@@ -2,17 +2,17 @@
 
 class Solution {
 public:
-    void solve(TreeNode* node, vector<int>& ans){
+    void solve(TreeNode* node, vector<int>& inorder){
         if(node==NULL)
             return;
-        solve(node->left, ans);
-        ans.push_back(node->val);
-        solve(node->right, ans);
+        solve(node->left, inorder);
+        inorder.push_back(node->val);
+        solve(node->right, inorder);
     }
     vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> ans;
-        solve(root, ans);
-        return ans;
+        vector<int> inorder;
+        solve(root, inorder);
+        return inorder;
     }
 };
 
@@ -22,7 +22,7 @@ public:
 class Solution{
 public:
     vector<int> inorderTraversal(TreeNode* root){
-        vector<int> ans;
+        vector<int> inorder;
         stack<TreeNode*> st;
         TreeNode* node = root;
         while(1){
@@ -35,10 +35,43 @@ public:
                     break;
                 node = st.top();
                 st.pop();
-                ans.push_back(node->val);
+                inorder.push_back(node->val);
                 node = node->right;
             }
         }
-        return ans;
+        return inorder;
+    }
+};
+
+
+// Morris Inorder Traversal
+
+class Solution{
+public:
+    vector<int> inorderTraversal(TreeNode* root){
+        vector<int> inorder;
+        TreeNode* node = root;
+        while(node!=NULL){
+            if(node->left==NULL){
+                inorder.push_back(node->val);
+                node = node->right;
+            }
+            else{
+                TreeNode* l = node->left;
+                while(l->right && l->right!=node){
+                    l = l->right;
+                }
+                if(l->right == NULL){
+                    l->right = node;
+                    node = node->left;
+                }
+                else{
+                    l->right = NULL;
+                    inorder.push_back(node->val);
+                    node = node->right;
+                }
+            }
+        }
+        return inorder;
     }
 };
