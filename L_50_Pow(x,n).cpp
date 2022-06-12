@@ -1,4 +1,4 @@
-/* -------------- Brute Force -----------------------
+// Method1: Brute Force
 
 class Solution {
 public:
@@ -12,9 +12,7 @@ public:
     }
 };
 
------------------------------------------------------*/
-
-// Binary Exponentiation
+// Method2: Binary Exponentiation
 
 class Solution {
 public:
