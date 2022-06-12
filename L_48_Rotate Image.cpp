@@ -1,4 +1,4 @@
-/* --------- O(n^2) time & O(n^2) space ------------
+// Method1: O(n^2) time & O(n^2) space
 
 class Solution {
 public:
@@ -14,9 +14,7 @@ public:
     }
 };
 
----------------------------------------------------*/
-
-/* --------- O(n^2) Solution with no extra space ---------------
+// Method2: O(n^2) Solution with no extra space 
 
 class Solution{
 public:
@@ -31,5 +29,3 @@ public:
             reverse(matrix[i].begin(),matrix[i].end());
     }
 };
-
------------------------------------------------------------------*/
