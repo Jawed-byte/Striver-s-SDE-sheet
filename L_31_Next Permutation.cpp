@@ -1,6 +1,6 @@
-/* Generating all possible permutations of the array. And then finding the next permutation of the given array.*/
+// Method1
 
-/*class Solution{
+class Solution{
 public:
     void solve(vector<int>& nums, vector<vector<int>>& ans, int idx){
         if(idx==nums.size()){
@@ -30,8 +30,9 @@ public:
         if(done==0)
             nums=ans[0];
     }
-};*/
+};
 
+// Method2
 
 class Solution {
 public:
