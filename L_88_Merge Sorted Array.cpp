@@ -1,4 +1,4 @@
-/* ---- O(nlogn) with extra space ------------------
+// Method1: O(nlogn) with extra space 
 
 class Solution {
 public:
@@ -20,9 +20,8 @@ public:
     }
 };
 
-----------------------------------------------------*/
 
-/* ---------- O(nlogn) without extra space ------------
+// Method2: O(nlogn) without extra space 
 
 class Solution{
 public:
@@ -48,9 +47,7 @@ public:
     }
 };
 
-----------------------------------------------------*/
-
-/* ----------- Another no extra space solution -----------
+// Method3: Another no extra space solution 
 
 class Solution{
 public:
@@ -69,9 +66,7 @@ public:
     }
 };
 
-------------------------------------------------------------*/
-
-// ----------------- Gap Method -----------------
+// Method4: Gap Method 
 
 class Solution{
 public:
