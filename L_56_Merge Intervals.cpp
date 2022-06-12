@@ -1,4 +1,6 @@
-/*class Solution {
+// Method1
+
+class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
         int n=intervals.size();
@@ -21,7 +23,9 @@ public:
         }
         return res;
     }
-};*/
+};
+
+// Method2
 
 class Solution{
 public:
