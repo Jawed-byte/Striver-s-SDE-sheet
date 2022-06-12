@@ -1,4 +1,4 @@
-/* -------------- Brute Force ---------------------
+// Method1: O(m*n)
 
 class Solution {
 public:
@@ -15,9 +15,7 @@ public:
     }
 };
 
----------------------------------------------------*/
-
-// Binary Search
+// method2: Binary Search
 
 class Solution {
 public:
