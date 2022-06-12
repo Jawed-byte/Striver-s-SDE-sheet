@@ -1,4 +1,6 @@
-/*class Solution {
+// Method1
+
+class Solution {
 public:
     void sortColors(vector<int>& nums) {
         int n=nums.size();
@@ -19,7 +21,9 @@ public:
         while(c2--)
             nums.push_back(2);
     }
-};*/
+};
+
+// Method2
 
 class Solution{
 public:
