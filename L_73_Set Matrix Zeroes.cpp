@@ -1,6 +1,6 @@
-//Set Matrix Zeroes
+// Method1 
 
-/*class Solution {
+class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
         int m=matrix.size();
@@ -26,9 +26,11 @@ public:
             }
         }
     }
-};*/
+};
 
-/*class Solution{
+// Method2
+
+class Solution{
 public:
     void setZeroes(vector<vector<int>>& matrix){
         int m=matrix.size();
@@ -50,7 +52,9 @@ public:
             }
         }
     }
-};*/
+};
+
+// Method3
 
 class Solution{
 public:
