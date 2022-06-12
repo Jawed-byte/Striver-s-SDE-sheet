@@ -1,4 +1,4 @@
-/* ---------------- O(nlogn) Sorting Solution ----------
+// Method1: O(nlogn) Sorting Solution 
 
 class Solution {
 public:
@@ -15,9 +15,7 @@ public:
     }
 };
 
----------------------------------------------------------*/
-
-/* ---------------- Hashing Solution -------------------
+// Method2: Hashing Solution
 
 class Solution{
 public:
@@ -36,9 +34,7 @@ public:
     }
 };
 
----------------------------------------------------------*/
-
-// LinkedList Cycle method
+// Method3: LinkedList Cycle method
 
 class Solution{
 public:
