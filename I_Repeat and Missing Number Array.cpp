@@ -1,4 +1,4 @@
-/* --------------- hashing method ----------------------
+// Method1: Hashing method
 
 vector<int> Solution::repeatedNumber(const vector<int> &A) {
     int n=A.size();
@@ -15,9 +15,7 @@ vector<int> Solution::repeatedNumber(const vector<int> &A) {
     return res;
 }
 
--------------------------------------------------------*/
-
-/* ------------------- Using Maths -----------------------
+// Method2: Using Maths 
 
 vector<int> Solution::repeatedNumber(const vector<int> &A){
     long long int len = A.size();
@@ -44,9 +42,7 @@ vector<int> Solution::repeatedNumber(const vector<int> &A){
     
 }
 
---------------------------------------------------------*/
-
-// Using Xor operations
+// Method3: Using Xor operations
 
 vector<int> Solution::repeatedNumber(const vector<int> &A){
     int xor1;
