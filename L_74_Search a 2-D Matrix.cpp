@@ -15,7 +15,7 @@ public:
     }
 };
 
-// method2: Binary Search
+// Method2: Binary Search
 
 class Solution {
 public:
