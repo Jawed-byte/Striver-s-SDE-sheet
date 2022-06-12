@@ -1,4 +1,4 @@
-/* ----------- Brute Force ---------------------
+// Method1: Brute Force 
 
 class Solution {
 public:
@@ -8,9 +8,7 @@ public:
     }
 };
 
-------------------------------------------------*/
-
-/* ------------- Hashing Solution ---------------
+// Method2: Hashing Solution 
 
 class Solution{
 public:
@@ -29,7 +27,7 @@ public:
     }
 };
 
--------------------------------------------------*/
+// Method3:
 
 class Solution{
 public:
