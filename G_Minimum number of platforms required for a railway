@@ -1,0 +1,44 @@
+// Method 1: Brute Force
+
+int findPlatform(int arr[],int dep[],int n)
+{
+    int ans=1;
+    for(int i=0;i<=n-1;i++)
+    {
+        int count=1;
+        for(int j=i+1;j<=n-1;j++)
+        {
+            if((arr[i]>=arr[j] && arr[i]<=dep[j]) || (arr[j]>=arr[i] && arr[j]<=dep[i]))
+               count++;
+        }
+        ans=max(ans,count); //updating the value
+    }
+    return ans;
+ }
+ 
+ 
+ // Method 2: Efficient Approach (Sorting)
+ 
+ int findPlatform(int arr[],int dep[],int n)
+  {
+    sort(arr,arr+n);
+    sort(dep,dep+n);
+    int ans=1;
+    int count=1;
+    int i=1,j=0;
+    while(i<n && j<n)
+    {
+        if(arr[i]<=dep[j])
+        {
+            count++;
+            i++;
+        }
+        else
+        {
+            count--;
+            j++;
+        }
+        ans=max(ans,count);
+    }
+    return ans;
+  }
