@@ -1,0 +1,44 @@
+// Recursive
+
+class Solution {
+public:
+    void solve(TreeNode* node, vector<int>& inorder){
+        if(node==NULL)
+            return;
+        solve(node->left, inorder);
+        inorder.push_back(node->val);
+        solve(node->right, inorder);
+    }
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> inorder;
+        solve(root, inorder);
+        return inorder;
+    }
+};
+
+
+// Iterative
+
+class Solution{
+public:
+    vector<int> inorderTraversal(TreeNode* root){
+        vector<int> inorder;
+        stack<TreeNode*> st;
+        TreeNode* node = root;
+        while(1){
+            if(node!=NULL){
+                st.push(node);
+                node = node->left;
+            }
+            else{
+                if(st.empty())
+                    break;
+                node = st.top();
+                st.pop();
+                inorder.push_back(node->val);
+                node = node->right;
+            }
+        }
+        return inorder;
+    }
+};
