@@ -1,0 +1,38 @@
+// Intution
+
+Here's a breakdown of the code's intution:
+
+1. Initialize a temporary string temp with the value of string a.
+2. While the length of string a is less than the length of string b,
+   repeatedly concatenate temp to a. This ensures that a becomes at
+   least as long as b.
+3. Check if string b is found as a substring in a using the find() function. If
+   it is found, return the number of repetitions of temp in a, which is
+   calculated as a.length()/temp.length().
+4. If b is not found in a, concatenate temp to a one more time to handle
+   the case where b could span across multiple repetitions of temp.
+5. Check again if string b is found as a substring in the updated a. It is 
+   found, return the number of repitions of temp in a, which is
+   calculated as a.length()/temp.length().
+6. If b is still not found in a after the additional concatenation, return -1 to
+   indicate that it is not possible to form b by repeating a.
+7. In summary, the code repeatedly concatenate a with temporary
+   string temp until a becomes at least as long as b. Then it checks if b is
+   a substring of a and returns the minimum number repetitions of a
+   required. If b is not found, the code concatenates temp one more time
+   and performs the search again. If b is still not found, -1 is returned.
+
+class Solution {
+public:
+    int repeatedStringMatch(string a, string b) {
+        string temp=a;
+        while(a.length() < b.length())
+         a+=temp;
+        if(a.find(b)!=string::npos)
+         return a.length()/temp.length();
+        a+=temp;
+        if(a.find(b)!=string::npos)
+         return a.length()/temp.length();
+        return -1;
+    }
+};
