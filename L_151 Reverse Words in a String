@@ -1,0 +1,109 @@
+// Using stack
+
+class Solution {
+public:
+    string reverseWords(string s) {
+      int n=s.size();
+      if(n==0)
+        return s;
+      stack<string> st;
+      string res;
+      for(int i=0;i<n;i++){
+        string word;
+        if(s[i]==' ') 
+          continue; // skip spaces
+        while(i<s.size() && s[i]!=' '){ //stores continuous letters into word
+          word+=s[i];
+          i++;
+        }
+        st.push(word);
+      }  
+      while(!st.empty()){
+        res+=st.top();
+        st.pop();
+        if(!st.empty())
+         res+=" ";
+      }
+      return res;
+    }
+};
+
+// Two pointer method using extra space
+
+class Solution {
+public:
+    string reverseWords(string s) {
+      int i=0, j, n=s.size();
+      string str;
+      while(i<n){
+        while(i<n && s[i]==' ') i++;
+        if(i==n) break;
+        j=i+1;
+        while(j<n && s[j]!=' ') j++;
+        string sub = s.substr(i,j-i);
+        if(str.size()==0)
+          str=sub;
+        else
+          str = sub+" "+str;
+        i=j+1;
+      }
+      return str;
+    }
+};
+
+// Using stringstream
+
+class Solution {
+public:
+    string reverseWords(string s) {
+        string word, ans="";
+        stringstream ss(s); // Createda stringstream object for str
+
+        while(ss>>word){
+          ans = word+" "+ans;
+        }
+        ans.pop_back();
+        return ans;
+    }
+};
+
+// Space Complexity = O(1)
+
+class Solution {
+public:
+  string reverseWords(string s) {
+    while(s[0]==' ') 
+     s.erase(0,1);  // Remove spaces from the begining
+    while(s[s.size()-1]==' ')
+     s.erase(s.size()-1); // Remove spaces from the ending
+    int i=0, space_count=0;
+    /*Now we count the middle spaces b/w two words, if more than one space found b/w two       words, then remove it*/    
+    while(s[i])
+    {
+      /* if the character is not space, then this is the starting of a new word.
+      So make the space count 0. */
+      if(s[i]==' ') space_count++;
+      else
+        space_count=0;
+      if(space_count>1){
+        s.erase(i,1);
+        continue;
+      }
+      i++;
+    }
+    reverse(s.begin(),s.end());
+    int left = 0;
+    for(i=1;i<s.size();i++){
+      if(s[i]==' ') // space found means we have a word in our left and we have to reverse it
+      {
+        reverse(s.begin()+left, s.begin()+i);
+        left=i+1;
+      }
+      else if(i==s.size()-1)
+      {
+        reverse(s.begin()+left, s.begin()+i+1);
+      }                                   
+    }
+    return s;
+  }
+};
