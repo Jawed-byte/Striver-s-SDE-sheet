@@ -1,5 +1,9 @@
+// Method 1
+
 class Solution {
 public:
+    
+    // Function to reverse the vector
     void reverse(vector<int>& v, int i, int j){
         while(i<j){
             swap(v[i],v[j]);
@@ -9,12 +13,43 @@ public:
     }
     void rotate(vector<int>& nums, int k) {
         int n=nums.size();
+
+        // Base condition
         if(n==1 || n==k)
-            return;
+           return ;
         if(k>n)
-            k=k%n;
-        reverse(nums,0,n-k-1);
-        reverse(nums,n-k,n-1);
-        reverse(nums,0,n-1);
+           k=k%n;
+
+        reverse(nums,0,n-k-1); // reverse the vector from 0 to n-k-1
+        reverse(nums,n-k,n-1); // reverse the vector from n-k to last
+        reverse(nums,0,n-1);   // reverse the vector
     }
+};
+
+// Method 2
+
+class Solution {
+public:
+   void rotate(vector<int>& nums, int k){
+       int n=nums.size();
+       if(n==1 || n==k)
+          return;
+       if(k>n)
+          k=k%n;
+       vector<int>v(n-k,0);
+       for(int i=0;i<n-k;i++)
+       v[i] = nums[i];
+       int i=0, j=n-k;
+       while(j<n){
+           nums[i]=nums[j];
+           i++;
+           j++;
+       }
+       int idx=0;
+       while(i<n){
+           nums[i]=v[idx];
+           i++;
+           idx++;
+       }
+   }
 };
