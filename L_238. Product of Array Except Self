@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        const int n=nums.size();
+        vector<int>pref_product;
+        pref_product.push_back(1);
+        for(int x: nums){
+            pref_product.push_back(pref_product.back()*x);
+        }
+        vector<int>suf_product(n+1);
+        suf_product[n]=1;
+        for(int i=n-1;i>=0;i--)
+        {
+            suf_product[i]=suf_product[i+1]*nums[i];
+        }
+        vector<int>answer(n);
+        for(int i=0;i<n;i++)
+        {
+            answer[i]=pref_product[i]*suf_product[i+1];
+        }
+        return answer;
+    }
+};
