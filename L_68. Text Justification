@@ -1,0 +1,45 @@
+class Solution {
+public:
+    vector<string> fullJustify(vector<string>& words, int maxWidth) {
+        vector<string> res;
+        int st=0;
+        while(st < words.size()){
+            int end=st-1;
+            int cur_line_len=0;
+            while(end+1 < words.size() && cur_line_len+words[end+1].size()+end+1-st <= maxWidth){
+               end++;
+               cur_line_len+=words[end].size();
+            }
+            res.push_back(cur_line(words,st,end,cur_line_len,maxWidth));
+            st=end+1;
+        }
+        return res;
+    }
+
+    string cur_line(vector<string> words, int st, int end, int cur_line_len, int max){
+        string s="";
+        int eSpace=1, oSpace=0;
+        if(end!=st){
+            eSpace=(max-cur_line_len)/(end-st);
+            oSpace=(max-cur_line_len)%(end-st);
+        }
+        for(int i=st;i<=end;i++){
+            s+=words[i];
+            if(i!=end){
+                if(end==words.size()-1)
+                  s+=" ";
+                else{
+                    for(int j=1;j<=eSpace;j++)
+                    s+=" ";
+                    if(oSpace >= 1){
+                        s+=" ";
+                        oSpace--;
+                    }
+                }
+            }
+        }
+        while(s.length() < max)
+         s+=" ";
+         return s;
+    }
+};
