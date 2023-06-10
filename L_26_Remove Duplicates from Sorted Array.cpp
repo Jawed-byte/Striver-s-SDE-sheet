@@ -23,18 +23,18 @@ public:
 
 // optimized
 
-class Solution{
+class Solution {
 public:
-    int removeDuplicates(vector<int>& nums){
-        if(nums.size()==0)
-            return 0;
-        int i=0;
-        for(int j=1;j<nums.size();j++){
-            if(nums[j]!=nums[i]){
-                i++;
-                nums[i]=nums[j];
+    int removeDuplicates(vector<int>& nums) {
+        int n=nums.size();
+        int l=1, r=1;
+        while(r<n){
+            if(nums[r]!=nums[r-1]){
+                nums[l]=nums[r];
+                l++;
             }
+            r++;
         }
-        return i+1;
+        return l;
     }
 };
