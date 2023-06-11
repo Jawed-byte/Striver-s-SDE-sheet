@@ -1,3 +1,12 @@
+Intution:
+
+Step1: At first we sorted the citations array.
+Step2: If first element of the array itself is greater than n that means every other element is greater than n, So returning n.
+Step3: If there is only one element, If the element is non-zero returning 1 otherwise returning 0.
+Step4: For every index we are calculating the no of elements left after that element in th array and storing it in left.
+Step5: If at index array value is grater than or equal to the no of left elements then we are returning the left[i];
+
+
 class Solution {
 public:
     int hIndex(vector<int>& citations) {
