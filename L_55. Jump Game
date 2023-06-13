@@ -29,28 +29,26 @@ public:
 class Solution {
 public:
     int mem[10001];
-    
-    int solve(vector<int>& nums,int i)
-    {
-        if(i>=nums.size())
-            return 0;
-        if(i==nums.size()-1)
-            return 1;
-        if(mem[i]!=-1)
-            return mem[i];
-        int a=0;
-        for(int k=1;k<=nums[i] && k+i<nums.size();k++)
-        {
-            if(k+i<nums.size() && mem[k+i]!=-1)
-                a=a|mem[k+i];
-            else if(k+i<nums.size())
-               a=a|solve(nums,k+i);
-            if(a==1)
-               return 1;
-        }
-        return mem[i]=a;
+
+    int solve(vector<int>& nums, int i){
+      int n=nums.size();
+      if(i==n-1)
+       return 1;
+      if(i>=n)
+       return 0;
+      if(mem[i]!=-1)
+       return mem[i];
+      int a=0;
+      for(int k=1;k<=nums[i] && i+k<n; k++){
+           if(k+i<n && mem[i+k]!=-1)
+             a = a|mem[i+k];
+           else if(i+k<n)
+             a = a|solve(nums,i+k);
+           if(a==1)
+             return 1;
+      }
+      return mem[i]=a;
     }
-    
     bool canJump(vector<int>& nums) {
         memset(mem,-1,sizeof(mem));
         return solve(nums,0);
