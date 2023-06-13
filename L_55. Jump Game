@@ -40,7 +40,7 @@ public:
        return mem[i];
       int a=0;
       for(int k=1;k<=nums[i] && i+k<n; k++){
-           if(k+i<n && mem[i+k]!=-1)
+           if(i+k<n && mem[i+k]!=-1)
              a = a|mem[i+k];
            else if(i+k<n)
              a = a|solve(nums,i+k);
