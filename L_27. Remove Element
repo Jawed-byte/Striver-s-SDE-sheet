@@ -3,22 +3,6 @@
 class Solution {
 public:
     int removeElement(vector<int>& nums, int val) {
-        int k=0;
-        for(int i=0;i<nums.size();i++){
-            if(nums[i]!=val){
-                nums[k]=nums[i];
-                k++;
-            }
-        }
-        return k;
-    }
-};
-
-// Method 2
-
-class Solution {
-public:
-    int removeElement(vector<int>& nums, int val) {
         int l=0;
         int r= nums.size()-1;
         while(r>=0 && nums[r]== val)
@@ -33,5 +17,21 @@ public:
             }
         }
         return r+1; 
+    }
+};
+
+// Method 2
+
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int k=0;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]!=val){
+                nums[k]=nums[i];
+                k++;
+            }
+        }
+        return k;
     }
 };
