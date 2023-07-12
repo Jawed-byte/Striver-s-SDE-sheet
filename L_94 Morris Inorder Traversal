@@ -4,25 +4,25 @@ class Solution{
 public:
     vector<int> inorderTraversal(TreeNode* root){
         vector<int> inorder;
-        TreeNode* node = root;
-        while(node!=NULL){
-            if(node->left==NULL){
-                inorder.push_back(node->val);
-                node = node->right;
+        TreeNode* curr = root;
+        while(curr!=NULL){
+            if(curr->left==NULL){
+                inorder.push_back(curr->val);
+                curr = curr->right;
             }
             else{
-                TreeNode* l = node->left;
-                while(l->right && l->right!=node){
+                TreeNode* l = curr->left;
+                while(l->right && l->right!=curr){
                     l = l->right;
                 }
                 if(l->right == NULL){
-                    l->right = node;
-                    node = node->left;
+                    l->right = curr;
+                    curr = curr->left;
                 }
                 else{
                     l->right = NULL;
-                    inorder.push_back(node->val);
-                    node = node->right;
+                    inorder.push_back(curr->val);
+                    curr = curr->right;
                 }
             }
         }
