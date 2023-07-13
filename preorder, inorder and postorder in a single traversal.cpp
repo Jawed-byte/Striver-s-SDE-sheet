@@ -1,4 +1,4 @@
-vector<int>preInPostTraversal(TreeBode* root){
+vector<int>preInPostTraversal(TreeNode* root){
  stack<pair<TreeNode*,int>> st;
  st.push({root,1});
  vector<int> pre, in, post;
