@@ -1,0 +1,39 @@
+class NodeValue{
+public:
+    bool isBST;
+    int minNode, maxNode, maxSum;
+    NodeValue(){
+        isBST = true;
+        minNode = INT_MAX;
+        maxNode = INT_MIN;
+        maxSum = 0;
+    }
+};
+int ans;
+class Solution {
+public:
+    NodeValue FindSum(TreeNode* root){
+        if(root==NULL)
+          return NodeValue();
+        NodeValue curr;
+        NodeValue left = FindSum(root->left);
+        NodeValue right = FindSum(root->right);
+        if((left.isBST==true && right.isBST==true) && (left.maxNode < root->val && root->val < right.minNode)){
+            curr.isBST = true;
+            curr.maxSum = left.maxSum+right.maxSum+root->val;
+            curr.minNode = min(left.minNode, root->val);
+            curr.maxNode = max(right.maxNode, root->val);
+        }
+        else{
+            curr.isBST = false;
+            curr.maxSum = max(left.maxSum, right.maxSum);
+        }
+        ans = max(ans,curr.maxSum);
+        return curr;
+    }
+    int maxSumBST(TreeNode* root) {
+        ans = 0;
+        NodeValue obj = FindSum(root);
+        return ans;
+    }
+};
