@@ -1,0 +1,172 @@
+//{ Driver Code Starts
+// Initial Template for c++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+// User function Template for C++
+
+/* Recursion
+class Solution{
+public:
+    bool isPalindrome(string s, int i, int j){
+        while(i<=j){
+            if(s[i]!=s[j])
+              return false;
+            i++;
+            j--;
+        }
+        return true;
+    }
+    int solve(string s, int i, int j){
+        if(i>=j)
+          return 0;
+        if(isPalindrome(s,i,j)==true)
+          return 0;
+        int mn=INT_MAX-1;
+        for(int k=i;k<=j-1;k++){
+            int temp = 1+solve(s,i,k)+solve(s,k+1,j);
+            mn = min(mn,temp);
+        }
+        return mn;
+    }
+    int palindromicPartition(string str)
+    {
+        // code here
+        int n=str.length();
+        return solve(str,0,n-1);
+    }
+};
+*/
+
+/* Memoization
+class Solution{
+public:
+    bool isPalindrome(string s, int i, int j){
+        while(i<=j){
+            if(s[i]!=s[j])
+              return false;
+            i++;
+            j--;
+        }
+        return true;
+    }
+    int solve(string s, int i, int j,vector<vector<int>>& mem){
+        if(i>=j)
+          return 0;
+        if(isPalindrome(s,i,j)==true)
+          return 0;
+        if(mem[i][j]!=-1)
+          return mem[i][j];
+        int mn=INT_MAX-1;
+        for(int k=i;k<=j-1;k++){
+            int temp = 1+solve(s,i,k,mem)+solve(s,k+1,j,mem);
+            mn = min(mn,temp);
+        }
+        return mem[i][j]=mn;
+    }
+    int palindromicPartition(string str)
+    {
+        // code here
+        int n=str.length();
+        vector<vector<int>> mem(n,vector<int>(n,-1));
+        return solve(str,0,n-1,mem);
+    }
+};
+*/
+
+/* Optimized Memoization
+class Solution{
+public:
+    bool isPalindrome(string s, int i, int j){
+        while(i<=j){
+            if(s[i]!=s[j])
+              return false;
+            i++;
+            j--;
+        }
+        return true;
+    }
+    int solve(string s, int i, int j,vector<vector<int>>& mem){
+        if(i>=j)
+          return 0;
+        if(isPalindrome(s,i,j)==true)
+          return 0;
+        if(mem[i][j]!=-1)
+          return mem[i][j];
+        int mn=INT_MAX-1;
+        for(int k=i;k<=j-1;k++){
+            int low,high;
+            if(mem[i][k]!=-1)
+              low = mem[i][k];
+            else
+              low = solve(s,i,k,mem);
+            if(mem[k+1][j]!=-1)
+              high = mem[k+1][j];
+            else
+              high = solve(s,k+1,j,mem);
+            int temp = 1+low+high;
+            mn = min(mn,temp);
+        }
+        return mem[i][j]=mn;
+    }
+    int palindromicPartition(string str)
+    {
+        // code here
+        int n=str.length();
+        vector<vector<int>> mem(n,vector<int>(n,-1));
+        return solve(str,0,n-1,mem);
+    }
+};
+*/
+
+class Solution{
+public:
+    bool isPalindrome(string s, int i, int j){
+        while(i<=j){
+            if(s[i]!=s[j])
+              return false;
+            i++;
+            j--;
+        }
+        return true;
+    }
+    int f(string &str, int i, int n, vector<int>& mem){
+        if(i==n)
+          return 0;
+        if(mem[i]!=-1)
+          return mem[i];
+        int minCost = INT_MAX;
+        for(int j=i;j<n;j++){
+            if(isPalindrome(str,i,j)){
+                int cost = 1+f(str,j+1,n,mem);
+                minCost = min(minCost,cost);
+            }
+        }
+        return mem[i]=minCost;
+    }
+    int palindromicPartition(string str)
+    {
+        // code here
+        int n=str.size();
+        vector<int> mem(n,-1);
+        return f(str,0,n,mem)-1;
+    }
+};
+
+//{ Driver Code Starts.
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        string str;
+        cin>>str;
+        
+        Solution ob;
+        cout<<ob.palindromicPartition(str)<<"\n";
+    }
+    return 0;
+}
+// } Driver Code Ends
