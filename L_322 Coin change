@@ -1,0 +1,84 @@
+/* Recursive Solution
+class Solution {
+public:
+    int f(vector<int>& coins,int ind, int T){
+        if(ind==0){
+            if(T%coins[0]==0)
+               return T/coins[0];
+            return 1e9;
+        }
+        int notTake = f(coins,ind-1,T);
+        int Take = 1e9;
+        if(coins[ind]<=T)
+            Take = 1+f(coins,ind,T-coins[ind]);
+        return min(Take,notTake);
+    }
+    int coinChange(vector<int>& coins, int amount) {
+        int n = coins.size();
+        int res = f(coins,n-1,amount);
+        if(res>=1e9)
+          return -1;
+        return res;
+    }
+};
+*/
+
+/* Memoized Solution
+class Solution{
+public:
+    int f(vector<int>& coins,int ind, int T,vector<vector<int>>& mem){
+        if(ind==0){
+            if(T%coins[0]==0)
+               return T/coins[0];
+            return 1e9;
+        }
+        if(mem[ind][T]!=-1)
+            return mem[ind][T];
+        int notTake = f(coins,ind-1,T,mem);
+        int Take = 1e9;
+        if(coins[ind]<=T)
+            Take = 1+f(coins,ind,T-coins[ind],mem);
+        return mem[ind][T] = min(Take,notTake);
+    }
+    int coinChange(vector<int>& coins, int amount){
+        int n = coins.size();
+        vector<vector<int>> mem(n,vector<int>(amount+1,-1));
+        int res = f(coins,n-1,amount,mem);
+        if(res>=1e9)
+          return -1;
+        return res;
+    }
+};
+*/
+
+// Tabulation DP
+
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        int n=coins.size();
+        int dp[n+1][amount+1];
+        for(int i=0;i<=n;i++)
+            dp[i][0]=0;
+        for(int j=0;j<=amount;j++)
+            dp[0][j] = INT_MAX-1;
+        for(int j=1;j<=amount;j++){
+            if(j%coins[0]==0)
+                dp[1][j] = j/coins[0];
+            else
+                dp[1][j] = INT_MAX-1;
+        }
+        for(int i=2;i<=n;i++){
+            for(int j=1;j<=amount;j++){
+                if(coins[i-1]<=j)
+                    dp[i][j]=min(1+dp[i][j-coins[i-1]],dp[i-1][j]);
+                else
+                    dp[i][j] = dp[i-1][j];
+            }
+        }
+        if(dp[n][amount]!=INT_MAX-1)
+            return dp[n][amount];
+        else 
+            return -1;
+    }
+};
