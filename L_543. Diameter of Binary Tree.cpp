@@ -1,17 +1,20 @@
+// Concept by Aditya verma
+
 class Solution {
 public:
-    int diameterOfBinaryTree(TreeNode* root) {
-        int d = 0;
-        height(root,d);
-        return d;
-    }
-private:
-    int height(TreeNode* node, int &mx){
-        if(node==NULL)
+    int solve(TreeNode* root, int &res){
+        if(root==NULL)
             return 0;
-        int lh = height(node->left,mx);
-        int rh = height(node->right,mx);
-        mx = max(mx,lh+rh);
-        return 1+max(lh,rh);
+        int l = solve(root->left,res);
+        int r = solve(root->right,res);
+        int temp = max(l,r)+1;
+        int ans = max(temp,l+r+1);
+        res = max(ans,res);
+        return temp;
+    }
+    int diameterOfBinaryTree(TreeNode* root) {
+        int res = INT_MIN;
+        solve(root,res);
+        return res-1; // substracting 1 since question is asking no of edges as diameter.
     }
 };
