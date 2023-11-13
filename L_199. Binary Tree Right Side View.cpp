@@ -1,4 +1,4 @@
-/* Recursive
+// Recursive
 
 class Solution{
 public:
@@ -16,8 +16,6 @@ public:
         return res;
     }
 };
-
-*/
 
 // Iterative 
 
