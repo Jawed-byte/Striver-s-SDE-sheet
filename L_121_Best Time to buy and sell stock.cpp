@@ -1,7 +1,7 @@
-// Method1: O(n^2)
-
-class Solution {
-public:
+//  Approach 1:
+    Time: O(n^2)
+    Space: O(1)
+        
     int maxProfit(vector<int>& prices) {
         int res=0;
         int n=prices.size();
@@ -12,12 +12,11 @@ public:
         }
         return res;
     }
-};
 
-// Method2: O(n)
+//  Approach 2:
+    Time: O(n)
+    Space: O(1)
 
-class Solution{
-public:
     int maxProfit(vector<int>& prices){
         int maxPro=0;
         int minPrice=prices[0];
@@ -28,4 +27,3 @@ public:
         }
         return maxPro;
     }
-};
