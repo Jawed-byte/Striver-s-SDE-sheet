@@ -49,18 +49,21 @@ public:
 
 class Solution{
 public:
-    int lengthOfLIS(vector<int>& nums){
-        int n=nums.size();
-        int lis[n];
-        lis[0]=1;
+    int Solution::lis(const vector<int> &a) 
+    {
+        int n = a.size();
+        vector<int> dp(n,1);
         for(int i=1;i<n;i++)
         {
-         lis[i]=1;
-         for(int j=0;j<i;j++)
-         if(nums[i]>nums[j] && lis[i]<lis[j]+1)
-         lis[i]=lis[j]+1;
+            for(int j=0;j<i;j++)
+            {
+                if(a[j] < a[i] && dp[i] < dp[j]+1)
+                {
+                    dp[i] = max(dp[i], dp[j] + 1);
+                }
+            }
         }
-        return *max_element(lis,lis+n);
+        return *max_element(dp.begin(),dp.end());
     }
 };
 
